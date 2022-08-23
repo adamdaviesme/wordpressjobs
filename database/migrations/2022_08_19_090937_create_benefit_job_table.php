@@ -17,7 +17,6 @@ return new class extends Migration
     {
         Schema::create('benefit_job', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->foreignIdFor(Benefit::class);
             $table->foreignIdFor(Job::class);
         });

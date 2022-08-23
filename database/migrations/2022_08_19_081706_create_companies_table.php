@@ -18,10 +18,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->string('website_url');
-            $table->string('company_type');
-            $table->string('company_email');
-            $table->foreignIdFor(Location::class);
+            $table->string('website_url')->nullable();
+            $table->string('company_type')->nullable();
+            $table->string('company_email')->nullable();
+            $table->foreignIdFor(Location::class)->nullable();
         });
     }
 

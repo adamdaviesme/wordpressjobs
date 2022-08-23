@@ -21,16 +21,16 @@ class Job extends Model
 
     public function benefits()
     {
-        return $this->hasMany(Benefit::class);
+        return $this->belongsToMany(Benefit::class);
     }
 
-    public function jobTypes()
+    public function jobType()
     {
-        return $this->hasMany(JobType::class);
+        return $this->belongsTo(JobType::class);
     }
 
     public function tags()
     {
-        return $this->hasMany(Tag::class);
+        return $this->belongsToMany(Tag::class);
     }
 }

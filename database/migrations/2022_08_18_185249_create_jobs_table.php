@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Company;
+use App\Models\JobType;
 use App\Models\Location;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,14 +21,17 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->dateTime('expiry_date');
-            $table->text('job_description');
+            $table->text('job_description')->nullable();
             $table->integer('salary_from')->nullable();
             $table->integer('salary_to')->nullable();
-            $table->boolean('is_remote');
-            $table->boolean('is_featured');
-            $table->boolean('is_paid');
+            $table->string('job_type')->default('full-time');
+            $table->integer('feature_duration')->default(0);
+            $table->boolean('is_remote')->default(false);
+            $table->boolean('is_featured')->default(false);
+            $table->boolean('is_paid')->default(false);
             $table->foreignIdFor(Location::class);
             $table->foreignIdFor(Company::class);
+            $table->foreignIdFor(JobType::class);
         });
     }
 

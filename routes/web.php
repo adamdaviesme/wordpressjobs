@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $totalJobs = Job::count();
+
+    return view('index', [
+        'totalJobs' => $totalJobs
+    ]);
 });
 
-Route::get('/job', function () {
+Route::get('/job/{id}', function (int $id) {
     return view('single');
 })->name('job.single');
