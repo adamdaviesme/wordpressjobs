@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" href="/favicon.png" />
     <title>{{ $title }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
@@ -22,16 +22,28 @@
             <div>
                 <x-unit.logo />
             </div>
-            <div class="flex items-center">
+            <div class="flex items-center space-x-2 md:space-x-4">
+                @if (Route::is('job.single'))
+                    <a class="btn-sm px-3 bg-white py-2 shadow border-slate-200 hover:border-slate-300 text-slate-600"
+                        href="/">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2" class="h-4 w-4 md:h-6 md:w-6 md:opacity-50">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        <span class="hidden md:block ml-1">Back To Jobs</span>
+                    </a>
+                @endif
                 <button class="btn bg-indigo-500 font-medium hover:bg-indigo-600 text-white">
-                    <svg class="w-4 h-4 fill-current opacity-50 shrink-0" viewBox="0 0 16 16">
-                        <path
-                            d="M15 7H9V1c0-.6-.4-1-1-1S7 .4 7 1v6H1c-.6 0-1 .4-1 1s.4 1 1 1h6v6c0 .6.4 1 1 1s1-.4 1-1V9h6c.6 0 1-.4 1-1s-.4-1-1-1z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-6 md:w-6 md:opacity-50 shrink-0"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                     </svg>
                     <span class="hidden xs:block ml-2">Post A Job - $50</span>
                 </button>
             </div>
         </header>
+
+        <x-unit.banner />
 
         <main>
             {{ $slot }}
@@ -47,6 +59,7 @@
 
     @livewireScripts
     @yield('scripts')
+    @livewire('livewire-ui-modal')
 </body>
 
 </html>

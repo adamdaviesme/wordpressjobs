@@ -18,7 +18,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
-            $table->string('website_url')->nullable();
+            $table->string('slug');
+            $table->string('company_url')->nullable();
             $table->string('company_type')->nullable();
             $table->string('company_email')->nullable();
             $table->foreignIdFor(Location::class)->nullable();

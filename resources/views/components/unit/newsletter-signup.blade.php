@@ -14,8 +14,10 @@
             <h3>Receive the latest Wordpress jobs direct to your inbox</h3>
         </div>
         <div class="text-right">
-            <a class="text-sm font-bold text-indigo-500 hover:text-indigo-600" href="#0">Sign up
-                -&gt;</a>
+            <button class="text-sm font-bold text-indigo-500 hover:text-indigo-600" type="button"
+                onclick="Livewire.emit('openModal', 'email-signup')">
+                Sign up -&gt;
+            </button>
         </div>
     </div>
 </div>

@@ -22,6 +22,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/job/{id}', function (int $id) {
-    return view('single');
+Route::get('/job/{slug}-{companySlug}-{job}', function (string $slug, string $companySlug, Job $job) {
+    return view('single', [
+        'slug' => $slug,
+        'companySlug' => $companySlug,
+        'job' => $job,
+    ]);
 })->name('job.single');

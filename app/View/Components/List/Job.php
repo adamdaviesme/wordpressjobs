@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\struct\list;
+namespace App\View\Components\list;
 
 use App\Models\Job as JobModel;
 use Illuminate\View\Component;
@@ -27,6 +27,6 @@ class Job extends Component
      */
     public function render()
     {
-        return view('components.struct.list.job');
+        return view('components.list.job');
     }
 }

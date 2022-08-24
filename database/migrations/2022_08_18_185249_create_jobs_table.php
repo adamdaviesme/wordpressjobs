@@ -20,6 +20,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name');
+            $table->string('slug');
             $table->dateTime('expiry_date');
             $table->text('job_description')->nullable();
             $table->integer('salary_from')->nullable();
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->boolean('is_remote')->default(false);
             $table->boolean('is_featured')->default(false);
             $table->boolean('is_paid')->default(false);
+            $table->string('application_url')->default('');
             $table->foreignIdFor(Location::class);
             $table->foreignIdFor(Company::class);
             $table->foreignIdFor(JobType::class);

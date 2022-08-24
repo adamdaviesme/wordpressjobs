@@ -1,13 +1,15 @@
-<a href="{{ route('job.single', ['id' => $job->id]) }}" title="View job post"
+<a href="{{ route('job.single', ['slug' => $job->slug, 'companySlug' => $job->company->slug, 'job' => $job]) }}"
+    title="View job post"
     {{ $attributes->class(['bg-white shadow hover:shadow-lg transition-shadow rounded-sm border border-slate-200 px-5 py-4 block', '!bg-amber-50' => $featured]) }}>
     <div class="flex flex-col md:flex-row justify-between md:items-center space-y-4 md:space-y-0 md:space-x-2">
         <!-- Left side -->
         <div class="flex items-start space-x-3 md:space-x-4">
             <div>
-                <span class="inline-flex items-center font-semibold text-slate-800">
-                    <span>{{ $job->name }}</span>
-                    <span class="w-2 h-px block bg-slate-400 mx-2"></span>
-                    <span>{{ $job->company->name }}</span>
+                <span class="inline-flex flex-col md:flex-row items-start md:items-center font-semibold text-slate-800">
+                    <span>{{ Str::of($job->name)->limit(35) }}</span>
+                    <span class="w-2 h-px lg:block bg-slate-400 mx-2 hidden"></span>
+                    <span
+                        class="block text-slate-500 md:text-slate-800 text-sm md:text-base">{{ Str::of($job->company->name)->limit(20) }}</span>
                 </span>
                 <div class="text-sm mt-1">
                     {{ $job->jobType->name }} /

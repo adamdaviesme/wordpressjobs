@@ -23,13 +23,14 @@
         </div>
         <!-- Jobs header -->
         <div class="flex justify-between items-center mb-4">
-            <div class="text-sm text-slate-500 italic">Currently showing {{ $totalJobs }}
+            <div class="text-sm text-slate-500 italic">
+                Results: {{ $totalJobs }}
                 {{ $totalJobs > 1 ? 'jobs' : 'job' }} across {{ $pages }}
                 {{ $pages > 1 ? 'pages' : 'page' }}
             </div>
             <!-- Sort -->
             <div class="text-sm">
-                <span>Sort by </span>
+                <span class="hidden md:inline-block">Sort by </span>
                 <div class="relative inline-flex" x-data="{ open: false }">
                     <button class="inline-flex justify-center items-center group" aria-haspopup="true"
                         @click.prevent="open = !open" :aria-expanded="open">
@@ -74,7 +75,7 @@
             <div class="space-y-2 lg:space-y-4">
                 @if ($totalJobs > 0)
                     @foreach ($jobs as $job)
-                        <x-struct.list.job wire:key="single-job-listing-{{ $job->id }}"
+                        <x-list.job wire:key="single-job-listing-{{ $job->id }}"
                             isNew="{{ $pastThreshold < $job->created_at }}" featured="{{ $job->is_featured }}"
                             :job="$job" />
                     @endforeach
