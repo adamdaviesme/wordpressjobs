@@ -65,7 +65,7 @@ class JobList extends Component
         $benefits = array_keys($this->filterMultipleCheckboxes($this->filters['benefits']));
 
         // Build query
-        $jobs = Job::whereLike(['name', 'job_description'], $this->search ?? '')->where('expiry_date', '>', today())
+        $jobs = Job::whereLike(['name', 'job_description', 'location.name', 'location.country'], $this->search ?? '')->where('expiry_date', '>', today())
             ->when($this->isRemote, function ($query, $isRemote) {
                 return $query->where('is_remote', $isRemote);
             })

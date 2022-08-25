@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     $totalJobs = Job::count();
-
     return view('index', [
         'totalJobs' => $totalJobs
     ]);
@@ -29,3 +28,7 @@ Route::get('/job/{slug}-{companySlug}-{job}', function (string $slug, string $co
         'job' => $job,
     ]);
 })->name('job.single');
+
+Route::get('/post-job', function () {
+    return view('post');
+})->name('job.post');

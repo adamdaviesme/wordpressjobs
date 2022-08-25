@@ -21,6 +21,7 @@
                 </button>
             </form>
         </div>
+
         <!-- Jobs header -->
         <div class="flex justify-between items-center mb-4">
             <div class="text-sm text-slate-500 italic">
@@ -28,6 +29,7 @@
                 {{ $totalJobs > 1 ? 'jobs' : 'job' }} across {{ $pages }}
                 {{ $pages > 1 ? 'pages' : 'page' }}
             </div>
+
             <!-- Sort -->
             <div class="text-sm">
                 <span class="hidden md:inline-block">Sort by </span>
@@ -67,6 +69,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Job list -->
         <div class="w-full relative">
             <div class="flex items-center justify-center py-4 px-2 z-10 bg-white/50 absolute inset-0"
@@ -88,13 +91,16 @@
                 @endif
             </div>
         </div>
+
         <!-- Pagination -->
         <div class="mt-6">
             {{ $jobs->links() }}
         </div>
+
     </div>
 
 </div>
+
 @section('scripts')
     <script>
         Livewire.on('gotoTop', () => {

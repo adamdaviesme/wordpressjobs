@@ -2,7 +2,6 @@
     'title' => 'Wordpress Jobs - Find your next Wordpress job',
     'main' => 'Main Content',
 ])
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -13,6 +12,7 @@
     <title>{{ $title }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
+    @stack('styles')
 </head>
 
 <body class="font-inter antialiased bg-slate-100 text-slate-600">
@@ -33,13 +33,13 @@
                         <span class="hidden md:block ml-1">Back To Jobs</span>
                     </a>
                 @endif
-                <button class="btn bg-indigo-500 font-medium hover:bg-indigo-600 text-white">
+                <a href="{{ route('job.post') }}" class="btn bg-indigo-500 font-medium hover:bg-indigo-600 text-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-6 md:w-6 md:opacity-50 shrink-0"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                     </svg>
-                    <span class="hidden xs:block ml-2">Post A Job - $50</span>
-                </button>
+                    <span class="hidden xs:block ml-2">Post A Job - from $50</span>
+                </a>
             </div>
         </header>
 
@@ -58,8 +58,9 @@
     </div>
 
     @livewireScripts
-    @yield('scripts')
     @livewire('livewire-ui-modal')
+    @stack('scripts')
+    @yield('scripts')
 </body>
 
 </html>

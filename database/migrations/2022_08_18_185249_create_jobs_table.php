@@ -16,7 +16,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('wp_jobs', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('name');
@@ -25,7 +25,6 @@ return new class extends Migration
             $table->text('job_description')->nullable();
             $table->integer('salary_from')->nullable();
             $table->integer('salary_to')->nullable();
-            $table->string('job_type')->default('full-time');
             $table->integer('feature_duration')->default(0);
             $table->boolean('is_remote')->default(false);
             $table->boolean('is_featured')->default(false);

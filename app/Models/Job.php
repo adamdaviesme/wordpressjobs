@@ -9,6 +9,8 @@ class Job extends Model
 {
     use HasFactory;
 
+    protected $table = 'wp_jobs';
+
     public function company()
     {
         return $this->belongsTo(Company::class);

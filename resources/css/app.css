@@ -17,6 +17,10 @@
     display: none;
 }
 
+.ql-editor {
+    @apply prose max-w-full;
+}
+
 @media screen and (max-width: theme("screens.lg")) {
     [x-cloak="lg"] {
         display: none;
