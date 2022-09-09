@@ -29,12 +29,6 @@ class EmailSignup extends ModalComponent
         return 'md';
     }
 
-    public function updated()
-    {
-        ray()->clearScreen();
-        ray($this->name, $this->email);
-    }
-
     public function submit()
     {
         $validatedData = $this->validate();

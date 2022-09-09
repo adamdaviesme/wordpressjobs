@@ -1,4 +1,4 @@
-<a href="{{ route('job.single', ['slug' => $job->slug, 'companySlug' => $job->company->slug, 'job' => $job]) }}"
+<a href="{{ route('job.show', ['slug' => $job->slug, 'companySlug' => $job->company->slug, 'job' => $job]) }}"
     title="View job post"
     {{ $attributes->class(['bg-white shadow hover:shadow-lg transition-shadow rounded-sm border border-slate-200 px-5 py-4 block', '!bg-amber-50' => $featured]) }}>
     <div class="flex flex-col md:flex-row justify-between md:items-center space-y-4 md:space-y-0 md:space-x-2">

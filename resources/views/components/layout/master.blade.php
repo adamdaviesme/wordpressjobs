@@ -23,23 +23,22 @@
                 <x-unit.logo />
             </div>
             <div class="flex items-center space-x-2 md:space-x-4">
-                @if (Route::is('job.single'))
-                    <a class="btn-sm px-3 bg-white py-2 shadow border-slate-200 hover:border-slate-300 text-slate-600"
-                        href="/">
+                @if (Route::is('job.show'))
+                    <x-unit.button-link-white href="/">
                         <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                             stroke-width="2" class="h-4 w-4 md:h-6 md:w-6 md:opacity-50">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
                         </svg>
                         <span class="hidden md:block ml-1">Back To Jobs</span>
-                    </a>
+                    </x-unit.button-link-white>
                 @endif
-                <a href="{{ route('job.post') }}" class="btn bg-indigo-500 font-medium hover:bg-indigo-600 text-white">
+                <x-unit.button-link :href="route('job.create')">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 md:h-6 md:w-6 md:opacity-50 shrink-0"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                     </svg>
-                    <span class="hidden xs:block ml-2">Post A Job - from $50</span>
-                </a>
+                    <span class="hidden xs:block ml-2">Post A Job</span>
+                </x-unit.button-link>
             </div>
         </header>
 
@@ -60,7 +59,6 @@
     @livewireScripts
     @livewire('livewire-ui-modal')
     @stack('scripts')
-    @yield('scripts')
 </body>
 
 </html>

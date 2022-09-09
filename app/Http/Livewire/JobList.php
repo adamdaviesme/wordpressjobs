@@ -12,7 +12,7 @@ class JobList extends Component
 {
     use WithPagination;
 
-    public $totalJobs = 12, $pages = 1, $search, $today, $pastThreshold, $isRemote = false, $currentOrder = 'desc',
+    public $totalJobs = 12, $pages = 1, $search, $pastThreshold, $isRemote = false, $currentOrder = 'desc',
         $filters = [
             'jobTypes' => [],
             'benefits' => []
@@ -21,6 +21,17 @@ class JobList extends Component
             'desc' => 'Newest',
             'asc' => 'Oldest'
         ];
+
+    private function filterMultipleCheckboxes($choices)
+    {
+        foreach ($choices as $id => $slug) {
+            if ($slug == false) {
+                unset($choices[$id]);
+            }
+        }
+
+        return $choices;
+    }
 
     public function mount()
     {
@@ -36,17 +47,6 @@ class JobList extends Component
     public function updated()
     {
         $this->resetPage();
-    }
-
-    private function filterMultipleCheckboxes($choices)
-    {
-        foreach ($choices as $id => $slug) {
-            if ($slug == false) {
-                unset($choices[$id]);
-            }
-        }
-
-        return $choices;
     }
 
     public function changeOrder(string $order)

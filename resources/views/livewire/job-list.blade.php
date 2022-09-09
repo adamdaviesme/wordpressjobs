@@ -6,20 +6,29 @@
     <div class="w-full">
         <!-- Search form -->
         <div class="mb-5">
-            <form class="relative">
+            <div class="relative group">
                 <label for="job-search" class="sr-only">Search</label>
                 <input id="job-search" class="form-input w-full pl-9 focus:border-slate-300" type="search"
                     placeholder="Search job title or keyword…" wire:model.debounce.500ms="search" />
-                <button class="absolute inset-0 right-auto group" type="submit" aria-label="Search">
-                    <svg class="w-4 h-4 shrink-0 fill-current text-slate-400 group-hover:text-slate-500 ml-3 mr-2"
+                <span class="absolute flex items-center inset-y-0 left-0">
+                    <svg class="w-4 h-4 shrink-0 fill-current text-slate-400 group-focus-within:!text-indigo-600 group-hover:text-slate-500 ml-3 mr-2"
                         viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M7 14c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7zM7 2C4.243 2 2 4.243 2 7s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z" />
                         <path
                             d="M15.707 14.293L13.314 11.9a8.019 8.019 0 01-1.414 1.414l2.393 2.393a.997.997 0 001.414 0 .999.999 0 000-1.414z" />
                     </svg>
-                </button>
-            </form>
+                </span>
+
+                <span class="absolute flex items-center inset-y-0 right-0">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                        class="ml-2 mr-4 h-4 w-4 shrink-0 text-slate-400 animate-spin" fill="none"
+                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" wire:loading.delay>
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                    </svg>
+                </span>
+            </div>
         </div>
 
         <!-- Jobs header -->
@@ -32,41 +41,25 @@
 
             <!-- Sort -->
             <div class="text-sm">
+
                 <span class="hidden md:inline-block">Sort by </span>
-                <div class="relative inline-flex" x-data="{ open: false }">
-                    <button class="inline-flex justify-center items-center group" aria-haspopup="true"
-                        @click.prevent="open = !open" :aria-expanded="open">
-                        <div class="flex items-center truncate">
-                            <span class="truncate font-medium text-indigo-500 group-hover:text-indigo-600">
-                                {{ $orders[$currentOrder] }}
-                            </span>
-                            <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-indigo-400" viewBox="0 0 12 12">
-                                <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-                            </svg>
-                        </div>
-                    </button>
-                    <div class="origin-top-right z-10 absolute top-full right-0 bg-white border border-slate-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"
-                        @click.outside="open = false" @keydown.escape.window="open = false" x-show="open"
-                        x-transition:enter="transition ease-out duration-200 transform"
-                        x-transition:enter-start="opacity-0 -translate-y-2"
-                        x-transition:enter-end="opacity-100 translate-y-0"
-                        x-transition:leave="transition ease-out duration-200" x-transition:leave-start="opacity-100"
-                        x-transition:leave-end="opacity-0" x-cloak>
-                        <ul>
-                            @foreach ($orders as $order => $label)
-                                @if ($order != $currentOrder)
-                                    <li>
-                                        <button type="button" wire:click="changeOrder('{{ $order }}')"
-                                            class="font-medium text-sm text-slate-600 hover:text-slate-800 flex items-center py-1 px-3"
-                                            @click="open = false" @focus="open = true" @focusout="open = false">
-                                            {{ $label }}
-                                        </button>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
+                <x-unit.dropdown>
+                    <x-slot name="currentSelection">{{ $orders[$currentOrder] }}</x-slot>
+                    <x-slot name="options">
+                        @foreach ($orders as $order => $label)
+                            @if ($order != $currentOrder)
+                                <li>
+                                    <button type="button" wire:click="changeOrder('{{ $order }}')"
+                                        class="font-medium text-sm text-slate-600 hover:text-slate-800 flex items-center py-1 px-3"
+                                        @click="open = false" @focus="open = true" @focusout="open = false">
+                                        {{ $label }}
+                                    </button>
+                                </li>
+                            @endif
+                        @endforeach
+                    </x-slot>
+                </x-unit.dropdown>
+
             </div>
         </div>
 
@@ -101,7 +94,7 @@
 
 </div>
 
-@section('scripts')
+@push('scripts')
     <script>
         Livewire.on('gotoTop', () => {
             window.scrollTo({
@@ -111,4 +104,4 @@
             })
         })
     </script>
-@endsection
+@endpush

@@ -11,6 +11,10 @@ class Job extends Model
 
     protected $table = 'wp_jobs';
 
+    protected $fillable = [
+        'name', 'slug', 'expiry_date', 'job_description', 'salary_from', 'salary_to', 'is_remote', 'is_featured', 'application_url', 'location_id', 'company_id', 'job_type_id'
+    ];
+
     public function company()
     {
         return $this->belongsTo(Company::class);

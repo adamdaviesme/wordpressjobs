@@ -22,13 +22,13 @@ Route::get('/', function () {
 });
 
 Route::get('/job/{slug}-{companySlug}-{job}', function (string $slug, string $companySlug, Job $job) {
-    return view('single', [
+    return view('job.show', [
         'slug' => $slug,
         'companySlug' => $companySlug,
         'job' => $job,
     ]);
-})->name('job.single');
+})->name('job.show');
 
 Route::get('/post-job', function () {
-    return view('post');
-})->name('job.post');
+    return view('job.create');
+})->name('job.create');

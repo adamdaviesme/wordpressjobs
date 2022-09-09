@@ -23,7 +23,6 @@ class JobListing extends Component
 
     public function mount(Job $job)
     {
-        ray()->clearScreen();
         $this->job = $job;
         $this->getRelatedJobs();
     }
